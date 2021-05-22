@@ -1,0 +1,44 @@
+# Sources:
+# https://betterprogramming.pub/run-an-ethereum-node-on-linux-late-2019-b37a1d35800e
+# https://github.com/diglos/ethereumonarm/blob/main/fpm-package-builder/geth/extras/geth.service
+# https://medium.com/pactum/geth-node-via-ubuntu-quick-start-90e6cfea7a62 
+# https://www.mortysnode.nl/geth-as-a-service/
+# https://gist.github.com/swaldman/e58a866eafc4ff043c4099e394901a1e
+# https://gist.github.com/veox/b4c2c121bf39e8c9e88026526cab4fc7
+
+[Unit]
+Description=Geth Ethereum Node
+
+# Start after network is up.
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+
+# Run as geth:geth
+User=geth
+
+WorkingDirectory=~
+
+# Start geth with predefined config in the home directory.
+ExecStart=/home/geth/bin/geth --config mainnet.toml
+
+# Give geth this time to stop before sending SIGKILL.
+TimeoutStopSec=5min
+
+# Restart if geth exits by itself with exit code other than 0.
+# More testing is needed to check is "always" is better option.
+Restart=on-failure
+
+# Delay restart by 5 sec.
+# I've seen this value in many places, but may not be needed.
+RestartSec=5
+
+[Install]
+
+WantedBy=multi-user.target
+
+
+
+
+
