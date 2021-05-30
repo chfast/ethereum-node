@@ -26,9 +26,8 @@ ExecStart=/home/geth/bin/geth --config mainnet.toml
 # Give geth this time to stop before sending SIGKILL.
 TimeoutStopSec=5min
 
-# Restart if geth exits by itself with exit code other than 0.
-# More testing is needed to check is "always" is better option.
-Restart=on-failure
+# Restart if geth exits with any exit code.
+Restart=always
 
 # Delay restart by 5 sec.
 # I've seen this value in many places, but may not be needed.
