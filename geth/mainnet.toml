@@ -1,0 +1,15 @@
+[Eth]
+# Use snap sync (default since geth 1.10.4)
+SyncMode = "snap"
+
+# Cache size for 16GB usage.
+DatabaseCache = 8192
+TrieCleanCache = 4096
+TrieDirtyCache = 2676
+SnapshotCache = 1536
+
+[Node]
+DataDir = "/home/geth"
+
+# Disable IPC socket
+IPCPath = ""
