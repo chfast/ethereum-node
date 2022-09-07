@@ -21,6 +21,7 @@ Environment= \
     NETWORK=%i \
     TCP_PORT=9000 \
     UDP_PORT=9000 \
+    METRICS=false \
     WEB3_URL=ws://localhost:8546 \
     WEB3_URL2=
 
@@ -30,6 +31,7 @@ EnvironmentFile=/home/nimbus/%i.conf
 
 ExecStart=/home/nimbus/bin/nimbus_beacon_node \
     --non-interactive \
+    --metrics=${METRICS} \
     --data-dir=data/${NETWORK} \
     --network=${NETWORK} \
     --web3-url=${WEB3_URL} \
