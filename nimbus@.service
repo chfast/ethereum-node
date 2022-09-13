@@ -22,8 +22,9 @@ Environment= \
     TCP_PORT=9000 \
     UDP_PORT=9000 \
     METRICS=false \
-    WEB3_URL=ws://localhost:8546 \
-    WEB3_URL2=
+    WEB3_URL=ws://localhost:8551 \
+    JWT_SECRET=/home/geth/geth/jwtsecret \
+    FEE_RECIPIENT=0x84af3D5824F0390b9510440B6ABB5CC02BB68ea1
 
 # Network-specific environmental variables
 EnvironmentFile=/home/nimbus/%i.conf
@@ -35,9 +36,10 @@ ExecStart=/home/nimbus/bin/nimbus_beacon_node \
     --data-dir=data/${NETWORK} \
     --network=${NETWORK} \
     --web3-url=${WEB3_URL} \
-    --web3-url=${WEB3_URL2} \
+    --jwt-secret=${JWT_SECRET} \
     --tcp-port=${TCP_PORT} \
-    --udp-port=${UDP_PORT}
+    --udp-port=${UDP_PORT} \
+    --suggested-fee-recipient=${FEE_RECIPIENT}
 
 # Give this time to stop before sending SIGKILL.
 TimeoutStopSec=5min
@@ -48,6 +50,9 @@ Restart=always
 # Delay restart by 5 sec.
 # I've seen this value in many places, but may not be needed.
 RestartSec=5
+
+# Don't restart when Doppelganger detection has been activated
+RestartPreventExitStatus=129
 
 [Install]
 
