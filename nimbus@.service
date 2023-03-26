@@ -30,7 +30,7 @@ Environment= \
 EnvironmentFile=/home/nimbus/%i.conf
     
 
-ExecStart=/home/nimbus/bin/nimbus_beacon_node \
+ExecStart=nimbus_beacon_node \
     --non-interactive \
     --metrics=${METRICS} \
     --data-dir=data/${NETWORK} \
