@@ -39,7 +39,10 @@ ExecStart=nimbus_beacon_node \
     --jwt-secret=${JWT_SECRET} \
     --tcp-port=${TCP_PORT} \
     --udp-port=${UDP_PORT} \
-    --suggested-fee-recipient=${FEE_RECIPIENT}
+    --enr-auto-update \
+    --suggested-fee-recipient=${FEE_RECIPIENT} \
+    --payload-builder \
+    --payload-builder-url=http://localhost:18550
 
 # Give this time to stop before sending SIGKILL.
 TimeoutStopSec=5min
