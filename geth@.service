@@ -23,7 +23,7 @@ WorkingDirectory=~
 
 # Start geth with config file defined by service instance name in the home directory.
 # The metrics are enabled by flag because it cannot be done with config.
-ExecStart=/home/geth/bin/geth --metrics --metrics.addr=127.0.0.1 --config %i.toml
+ExecStart=geth --metrics --metrics.addr=127.0.0.1 --config %i.toml
 
 # Give geth this time to stop before sending SIGKILL.
 TimeoutStopSec=5min
